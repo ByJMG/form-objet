@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+
+    function action(evt) {
+        var tag = document.getElementsByTagName('input');
+        var erreur = true;
+        var verifMail = [];
+        var good = [];
+        for (var i = 0; i < tag.length; i++) {
+
+        var tagAttr = tag[i].getAttribute("type");
+
+        if(tagAttr == "text"){
+            var verifId = tag[i].id;
+            var verifValue = tag[i].value;
+
+
+            //alert(verifValue);
+            if (verifId === "pseudo" || verifId === "Email" ) {
+              if(verifValue.trim() === ""){
+                 //alert('erreur :' + verifId);
+                 //document.getElementById(verifId).style.border="solid 1px red";
+                 good.push('erreur :' + verifId+" champ vide \n");
+                 document.getElementById(verifId).setAttribute("style","border-color:red;");
+                 var erreur = false;
+
+              }
+            }
+
+
+
+            if (verifId === "pass" ) {
+              if(verifValue.trim() === ""){
+                 //alert('erreur : manque mot de passe');
+                 document.getElementById(verifId).style.border="solid 1px red";
+                 good.push('erreur :mot de passe champ vide \n');
+                  var erreur = false;
+              }else{
+                verifMail.push(verifValue);
+              }
+            }
+
+
+
+            if (verifId === "confirm" ) {
+              if(verifValue.trim() === ""){
+                 //alert('erreur : manque confirmation mot de passe');
+                 document.getElementById(verifId).style.border="solid 1px red";
+                 good.push('erreur :confirmation mot de passe champ vide \n');
+                  var erreur = false;
+              }else{
+                if (verifValue === verifMail[0]) {
+                  //alert("yes");
+
+                }else{
+                  //alert('erreur : mots de passe non identique');
+                   var erreur = false;
+                    good.push('erreur : mots de passe non identique \n');
+                }
+              }
+
+
+            }
+
+
+
+        }
+
+        }
+
+              if(erreur === false){
+
+                  alert(good.join(''));
+                  evt.preventDefault()
+              }
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+      var subSub = document.getElementById("submit");
+      subSub.addEventListener("click", action);
+    });
+
+
+
+    </script>
+  </head>
+  <body>
+
+
+
+<form class="" action="" method="post" >
+  <label for="pseudo">Pseudonyme</label>
+  <input type="text" id="pseudo" value="" /><br />
+  <label for="pass">Mot de passe</label>
+  <input type="text" id="pass" value="" /><br />
+  <label for="confirm">confirm pass</label>
+  <input type="text" id="confirm" value=""  /><br />
+  <label for="mail">Email</label>
+  <input type="text" id="Email" value="" /><br />
+  <input type="submit" id="submit" value="Envoyer" />
+  <input type="reset"  value="Rafraîchir" />
+
+</form>
+
+
+
+  </body>
+
+
+</html>

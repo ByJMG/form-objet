@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+
+        .form-recrut-correct{
+          border: solid 1px green;
+          outline-color: green;
+        }
+
+        .form-recrut-incorrect{
+          border: solid 1px red;
+          outline-color: red;
+        }
+
+    </style>
+  </head>
+  <body>
+
+
+
+<form class="" action="" method="post" >
+  <label for="pseudo">Pseudonyme</label>
+  <input type="text" id="pseudo" value="" /><br />
+  <label for="pass">Mot de passe</label>
+  <input type="text" id="pass" value="" /><br />
+  <label for="confirm">confirm pass</label>
+  <input type="text" id="confirm" value=""  /><br />
+  <label for="mail">Email</label>
+  <input type="text" id="email" value="" /><br />
+  <input type="submit" id="submit" value="Envoyer" />
+  <input type="reset"  value="Rafraîchir" />
+
+</form>
+
+
+
+  </body>
+
+<script>
+
+/*$('input[type=text]').focus(function() {
+alert( "Handler for .focus() called." );
+});*/
+
+$(document).ready(function () {
+
+        // function de verification
+        $('input[type=text]').focus(function() {
+                  var idf = this.id;
+
+
+                  $('#'+idf).on('keyup', function(){
+
+                    var verifInput = $('#'+idf).val();
+                    if(idf != "confirm"){
+                      if (verifInput.length >= 5) {
+                          $('#'+idf).removeClass("form-recrut-incorrect");
+                          $('#'+idf).addClass("form-recrut-correct");
+                      } else {
+                          $('#'+idf).removeClass("form-recrut-correct");
+                          $('#'+idf).addClass("form-recrut-incorrect");
+                      }
+                    }else{
+                          var verifInputPass = $('#pass').val();
+                          var verifInputConfirm = $('#confirm').val();
+                          //alert(verifInputPass);
+                          if (verifInputPass === verifInputConfirm) {
+                              $('#'+idf).removeClass("form-recrut-incorrect");
+                              $('#'+idf).addClass("form-recrut-correct");
+                          } else {
+                              $('#'+idf).removeClass("form-recrut-correct");
+                              $('#'+idf).addClass("form-recrut-incorrect");
+                          }
+
+
+                    }
+
+
+                });
+
+        });
+
+
+
+
+
+/*$(document).ready(function () {
+
+  $('input[type=text]').focus(function() {
+  var idf = this.id;
+  verif(idf);
+  });
+
+  function verif(idf) {
+
+    $('#'+idf).on('keyup', function(){
+
+      var verifInput = $('#'+idf).val();
+
+
+      if (verifInput.length >= 5) {
+            $('#'+idf).removeClass("form-recrut-incorrect");
+            $('#'+idf).addClass("form-recrut-correct");
+        } else {
+            $('#'+idf).removeClass("form-recrut-correct");
+            $('#'+idf).addClass("form-recrut-incorrect");
+        }
+
+  });
+
+  }
+
+
+			/*function() {$('#pseudo').change(function(){
+
+        var pseudo = $("#pseudo").val();
+        alert("pseudo : " + pseudo);
+
+    });*/
+
+
+
+
+
+
+			});
+</script>
+</html>
